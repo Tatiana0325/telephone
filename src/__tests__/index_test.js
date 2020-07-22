@@ -19,3 +19,7 @@ test('Change 79105555555', () => {
 test('Change 89101110000', () => {
     expect(changePhone(89101110000)).toBe('+79101110000');
 });
+
+test('Change 9101110000', () => {
+    expect(changePhone(9101110000)).toBe('+79101110000');
+});

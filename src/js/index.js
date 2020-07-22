@@ -6,27 +6,16 @@ export default function changePhone(number) {
     const phoneMask =/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/i;
 
     if(phoneMask.test(number)) {
-        const phoneSigns = ['(', ')', ' ', '-'];
-        let newNumber = '';
-
-        for (let i = 0; i < number.length; i++) {
-            if (phoneSigns.indexOf(number[i]) == -1) {
-                newNumber += number[i];
-            }
-        }
-
-        let phone = newNumber.substring((newNumber.length - 10), 15);
-
+        let newNumber = number.replace(/[\-_(),+ ]/g, '');
         let code = newNumber.substring(0, (newNumber.length - 10));
+        let phone = newNumber.replace(code, '');
 
-        if (code == '8') {
+        if((code == '8') || (code == '')) {
             code = '+7';
-        };
-
-        if (code[0] != '+') {
+        } else {
             code = '+' + code;
         }
 
-        return `${code}${phone}`;
+        return code + phone;
     }
 }
